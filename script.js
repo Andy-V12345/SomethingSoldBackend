@@ -1,11 +1,12 @@
 const Amplify = window.aws_amplify.Amplify;
 const Auth = window.aws_amplify.Auth;
 
+
 Amplify.configure({
     Auth: {
-        userPoolId: 'YOUR_USER_POOL_ID', // Replace with your User Pool ID
-        userPoolWebClientId: 'YOUR_APP_CLIENT_ID', // Replace with your App Client ID
-        region: 'YOUR_AWS_REGION', // Replace with your AWS region
+        userPoolId: 'us-east-2_VT4BO7Yf1', // Replace with your User Pool ID
+        userPoolWebClientId: '3rdru5rrbr89tvm7q5d98v4kto', // Replace with your App Client ID
+        region: 'us-east-2', // Replace with your AWS region
     }
 });
 
@@ -23,6 +24,7 @@ async function signUp() {
             },
         });
         document.getElementById('message').textContent = 'Verification code sent to your email';
+        window.location.href = 'verify.html'
     } catch (error) {
         document.getElementById('message').textContent = error.message;
     }
@@ -36,7 +38,7 @@ async function signIn() {
         // Call AWS Cognito to sign in the user
         await Auth.signIn(email, password);
         // Redirect to verification page on successful sign-in
-        window.location.href = 'verify.html';
+        window.location.href = 'home.html';
     } catch (error) {
         document.getElementById('message').textContent = error.message;
     }
@@ -44,7 +46,7 @@ async function signIn() {
 
 // Function to handle email verification
 async function confirmSignUp() {
-    const email = document.getElementById('email').value;
+    const email = 'andyvu04@gmail.com'
     const verificationCode = document.getElementById('verificationCode').value;
     try {
         // Call AWS Cognito to confirm the sign-up
